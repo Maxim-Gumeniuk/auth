@@ -1,0 +1,33 @@
+# Node.js / Express
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variable file
+.env
+.env.develop
+# Build files
+dist/
+
+# Editor / IDE specific
+.vscode/
+.idea/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Dependency files
+package-lock.json
+yarn.lock
+npm-shrinkwrap.json
