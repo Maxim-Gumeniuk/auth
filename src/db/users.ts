@@ -32,7 +32,4 @@ export const connectUsersDb = async () => {
 
 usersDb.createSchema();
 
-export const userModel =  usersDb.createModel('users')
-
-
-
+export const userModel =  usersDb.createModel('users');
