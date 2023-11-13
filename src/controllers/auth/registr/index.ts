@@ -6,7 +6,7 @@ const registr = async (req: Request, res: Response) => {
     try {
 
         const { email, password } = req.body;
-    
+        
         const newUser = new userModel({
             email,
             password,

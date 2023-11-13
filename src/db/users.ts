@@ -15,7 +15,7 @@ export const usersDb = new DB(MONGOSTRING!, {
         type: String,
         required : true,
         min: [6, "password should contains min 6 characters"]
-    },
+    }
 });
 
 

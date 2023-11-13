@@ -5,3 +5,4 @@ export const generateRandomRegistrationNumber = () => {
     }
     return randomNumbers.join('');
 }
+////change name of file
