@@ -1,5 +1,5 @@
-import { userModel } from "@/db/users";
 import { Request, Response } from "express"
+import { userModel } from "@/db/users";
 
 
 const registr = async (req: Request, res: Response) => {
@@ -11,8 +11,9 @@ const registr = async (req: Request, res: Response) => {
             email,
             password,
         })
-    
-        await  newUser.save();
+
+        await newUser.save();
+
         res.send({
             newUser,
             message: 'new user created'

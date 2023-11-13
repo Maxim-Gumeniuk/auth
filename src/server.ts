@@ -4,6 +4,7 @@ import cors from "cors";
 import { ENVVARIABLES } from "@/env-variables";
 import { authRouter } from "./routes/auth-router";
 import { connectUsersDb } from "./db/users";
+import { newBot } from "./services/telegram";
 
 const app = express();
 
@@ -24,7 +25,12 @@ const start = async (): Promise<void> => {
         console.log(`Server started on ${PORT}`); 
     });
 
-    connectUsersDb()
+    await connectUsersDb()
+    await newBot()
+
+    ///"I understand that I should use Promise.all here. 
+    //However, is it necessary? 
+    //If I have trouble with the bot, my database won't connect."
 
     } catch (error) {
         console.error(error);
