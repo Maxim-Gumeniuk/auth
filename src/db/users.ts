@@ -22,7 +22,6 @@ export const usersDb = new DB(MONGOSTRING!, {
     }
 });
 
-
 export const connectUsersDb = async () => {
     try {
         await usersDb.connect();
