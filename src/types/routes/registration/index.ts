@@ -1,3 +1,3 @@
-export const enum Registration  {
+export const enum RegistrationLinks  {
     registration = '/registration',
 }
