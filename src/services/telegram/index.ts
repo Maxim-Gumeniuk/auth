@@ -7,7 +7,6 @@ const { TELEGRAM_BOT_TOKEN } = ENVVARIABLES;
 
 export let bot: TelegramBot | null = null;
 
-
 export const newBot = async (): Promise<void> => {
     try {
         bot = new TelegramBot(TELEGRAM_BOT_TOKEN!, { polling: true });
