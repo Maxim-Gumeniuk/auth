@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 export class DB {
     connectionString: string;
     schema: any;
