@@ -26,11 +26,6 @@ const start = async (): Promise<void> => {
     });
 
     await connectUsersDb()
-    await newBot()
-
-    ///"I understand that I should use Promise.all here. 
-    //However, is it necessary? 
-    //If I have trouble with the bot, my database won't connect."
 
     } catch (error) {
         console.error(error);
