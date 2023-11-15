@@ -15,7 +15,7 @@ export const usersDb = new DB(MONGOSTRING!, {
         required: true,
         min: [8, "password should contains min 8 characters"],
     },
-    randomNumber: {
+    activateToken: {
         type: String,
         required : true,
     }

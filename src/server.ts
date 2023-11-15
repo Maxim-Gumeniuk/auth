@@ -4,7 +4,6 @@ import cors from "cors";
 import { ENVVARIABLES } from "@/env-variables";
 import { authRouter } from "./routes/auth-router";
 import { connectUsersDb } from "./db/users";
-import { newBot } from "./services/telegram";
 
 const app = express();
 

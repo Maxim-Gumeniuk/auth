@@ -5,15 +5,11 @@ import { userModel } from "@/db/users";
 
 const { TELEGRAM_BOT_TOKEN } = ENVVARIABLES;
 
-export let bot: TelegramBot | null = null;
-
 export const newBot = async (): Promise<void> => {
     try {
-        bot = new TelegramBot(TELEGRAM_BOT_TOKEN!, { polling: true });
+        const bot = new TelegramBot(TELEGRAM_BOT_TOKEN!, { polling: true });
 
-        bot!.on('message', async (msg) => {
-            console.log(msg);
-            
+        bot!.on('message', async (msg) => {            
             const chatId = msg.chat.id;    
             
             if (msg.text) {
@@ -23,15 +19,15 @@ export const newBot = async (): Promise<void> => {
 
                 if (user) {
                     bot?.sendMessage(chatId, 'success');
-                    user.randomNumber = 'active';
+                    user.activateToken = 'activated';
                     user.save()
 
                     return;
-                }
-            console.log(user);
+                } 
             }
 
-        bot?.sendMessage(chatId, 'write email');
+        bot?.sendMessage(chatId, 'send your email');
+            return;
         });
 
     } catch (error) {
