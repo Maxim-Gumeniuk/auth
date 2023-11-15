@@ -1,7 +1,9 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-const { PORT } = process.env;
+const { PORT,  MONGODB, CLIENT_APP_URL } = process.env;
 
 export const ENVVARIABLES = {
-    PORT: PORT,
+  PORT: PORT,
+  MONGOSTRING: MONGODB,
+  CLIENT_APP_URL: CLIENT_APP_URL,
 };
