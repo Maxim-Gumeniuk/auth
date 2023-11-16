@@ -7,4 +7,4 @@ import express from "express";
 
 export const mainRouter = express.Router()
 
-mainRouter.get('/', authMiddleware, rolesChecker(['admin']), errorHandler(loginController.main))
+mainRouter.get('/', authMiddleware, rolesChecker(['user']), errorHandler(loginController.main))
