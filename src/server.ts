@@ -24,7 +24,7 @@ const start = async (): Promise<void> => {
         console.log(`Server started on ${PORT}`); 
     });
 
-    connectUsersDb()
+    await connectUsersDb()
 
     } catch (error) {
         console.error(error);

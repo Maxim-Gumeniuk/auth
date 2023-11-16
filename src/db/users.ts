@@ -15,7 +15,11 @@ export const usersDb = new DB(MONGOSTRING!, {
         required: true,
         min: [8, "password should contains min 8 characters"],
     },
-})
+    activateToken: {
+        type: String,
+        required : true,
+    }
+});
 
 ///add roles and accesToken
 export const connectUsersDb = async () => {
