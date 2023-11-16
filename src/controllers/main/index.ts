@@ -6,7 +6,6 @@ const main = (req: Request, res: Response) => {
     })
 }
 
-
 export const testController = {
     main,
 }
