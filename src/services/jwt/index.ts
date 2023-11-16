@@ -22,5 +22,5 @@ const verifyToken = (token: string) => {
 
 export const jwtService = {
     generateJwt,
-    verifyToken
+    verifyToken,
 }
