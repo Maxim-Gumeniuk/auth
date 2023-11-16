@@ -1,3 +1,4 @@
-export const enum RegistrationLinks  {
+export const enum authLinks  {
     registration = '/registration',
+    login = '/login'
 }

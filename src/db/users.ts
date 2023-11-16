@@ -1,5 +1,6 @@
 import { ENVVARIABLES } from "@/env-variables"
 import { DB } from "@/constructors/usersDb.ts";
+import { Roles } from "@/types/roles";
 
 const { MONGOSTRING } = ENVVARIABLES;
 
@@ -18,10 +19,14 @@ export const usersDb = new DB(MONGOSTRING!, {
     activateToken: {
         type: String,
         required : true,
+    },
+    role: {
+        type: String,
+        enum: Object.values(Roles),
+        default: Roles.USER,
     }
 });
 
-///add roles and accesToken
 export const connectUsersDb = async () => {
     try {
         await usersDb.connect();
@@ -35,4 +40,4 @@ export const connectUsersDb = async () => {
 
 usersDb.createSchema();
 
-export const userModel =  usersDb.createModel('users');
+export const userModel = usersDb.createModel('users');
