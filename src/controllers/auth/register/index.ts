@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { userModel } from "@/db/users";
+import { normalizeUser } from "@/helpers/normalize-user";
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -14,7 +15,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
 
     await  newUser.save();
     res.send({
-        newUser,
+        user: normalizeUser(newUser),
         message: 'new user created'
     });
 } catch(e) {

@@ -2,8 +2,9 @@ import express from "express";
 import cors from "cors";
 
 import { ENVVARIABLES } from "@/env-variables";
-import { authRouter } from "./routes/auth-router";
+import { authRouter } from "./routes/auth/auth-router";
 import { connectUsersDb } from "./db/users";
+import { mainRouter } from "./routes/main/main-router";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(authRouter);
+app.use(mainRouter);
 
 const start = async (): Promise<void> => {
     try {
