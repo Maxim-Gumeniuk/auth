@@ -17,6 +17,7 @@ export const usersDb = new DB(MONGOSTRING!, {
     },
 })
 
+///add roles and accesToken
 export const connectUsersDb = async () => {
     try {
         await usersDb.connect();
