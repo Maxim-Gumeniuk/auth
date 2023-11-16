@@ -4,8 +4,12 @@ import cors from "cors";
 import { ENVVARIABLES } from "@/env-variables";
 import { authRouter } from "./routes/auth/auth-router";
 import { connectUsersDb } from "./db/users";
+<<<<<<< HEAD
 import { mainRouter } from "./routes/main";
 import { errorMiddleware } from "./middlewares/error";
+=======
+import { mainRouter } from "./routes/main/main-router";
+>>>>>>> 33f38992519f5335762f31522a3d7733b62fe0ea
 
 const app = express();
 
@@ -19,7 +23,10 @@ app.use(cors({
 app.use(express.json());
 app.use(authRouter);
 app.use(mainRouter);
+<<<<<<< HEAD
 app.use(errorMiddleware)
+=======
+>>>>>>> 33f38992519f5335762f31522a3d7733b62fe0ea
 
 const start = async (): Promise<void> => {
     try {
