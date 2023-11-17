@@ -17,6 +17,12 @@ export const usersDb = new Db(MONGOSTRING!, {
     },
     activateToken: {
         type: String,
+        required : true,
+    },
+    role: {
+        type: String,
+        enum: Object.values(Roles),
+        default: Roles.USER,
     }
 });
 
@@ -33,4 +39,4 @@ export const connectUsersDb = async () => {
 
 usersDb.createSchema();
 
-export const userModel =  usersDb.createModel('users');
+export const userModel = usersDb.createModel('users');
