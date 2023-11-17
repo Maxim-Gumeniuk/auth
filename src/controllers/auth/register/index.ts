@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { userModel } from "@/db/users";
+import { newBot } from "@/services/telegram";
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -12,10 +13,14 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
         password,
     })
 
-    await  newUser.save();
+    await Promise.all([ 
+        newBot(),  
+        newUser.save()
+    ]);
+
     res.send({
         newUser,
-        message: 'new user created'
+        message: 'new user was created'
     });
 } catch(e) {
     console.log(e);
