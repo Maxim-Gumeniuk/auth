@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-export class DB {
+export class Db {
     connectionString: string;
     schema: any;
     constructor(connectionString: string, schema: any) {

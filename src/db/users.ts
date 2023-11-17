@@ -1,9 +1,9 @@
 import { ENVVARIABLES } from "@/env-variables"
-import { DB } from "@/constructors/usersDb.ts";
+import { Db } from "@/constructors/usersDb.ts";
 
 const { MONGOSTRING } = ENVVARIABLES;
 
-export const usersDb = new DB(MONGOSTRING!, {
+export const usersDb = new Db(MONGOSTRING!, {
     email: { 
         type: String, 
         unique: true, 
@@ -17,7 +17,6 @@ export const usersDb = new DB(MONGOSTRING!, {
     },
     activateToken: {
         type: String,
-        required : true,
     }
 });
 
