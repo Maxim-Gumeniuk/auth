@@ -1,4 +1,3 @@
-// import { loginController } from "@/controllers/auth/login";
 import { loginController } from "@/controllers/auth/login";
 import { errorHandler } from "@/helpers/error/errorHandler";
 import { authMiddleware } from "@/middlewares/auth";
