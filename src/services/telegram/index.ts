@@ -9,7 +9,7 @@ export const newBot = async (): Promise<void> => {
     try {
         const bot = new TelegramBot(TELEGRAM_BOT_TOKEN!, { polling: true });
 
-        bot!.on('message', async (msg) => {            
+        bot?.on('message', async (msg) => {            
             const chatId = msg.chat.id;    
             
             if (msg.text) {

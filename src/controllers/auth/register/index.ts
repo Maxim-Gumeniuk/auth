@@ -10,7 +10,6 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     const newUser = new userModel({
         email,
         password,
-        activateToken: 'waiting for activate'
     })
 
     await Promise.all([ 
