@@ -6,13 +6,11 @@ const generateJwt = (user: any) => {
         return jwt.sign({ user, role: user.role}, ENVVARIABLES.JWT_SECRET_KEY!);
     } catch(e) {
         console.log(e);
-        
     }
 }
 
 const verifyToken = (token: string) => {
     try {
-
         return jwt.verify(token, ENVVARIABLES.JWT_SECRET_KEY!)
     } catch(e) {
         console.log(e);

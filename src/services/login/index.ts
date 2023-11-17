@@ -6,7 +6,6 @@ const getUserByEmail = ( email: string) => {
     return user;
 }
 
-
 export const loginService = {
     getUserByEmail,
 }

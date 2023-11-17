@@ -1,5 +1,6 @@
 import { ENVVARIABLES } from "@/env-variables"
 import { Db } from "@/constructors/usersDb.ts";
+import { Roles } from "@/types/roles";
 
 const { MONGOSTRING } = ENVVARIABLES;
 
@@ -17,7 +18,6 @@ export const usersDb = new Db(MONGOSTRING!, {
     },
     activateToken: {
         type: String,
-        required : true,
     },
     role: {
         type: String,

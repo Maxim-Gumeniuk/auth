@@ -6,7 +6,7 @@ import { loginService } from "@/services/login";
 
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    const user = await loginService.findUserByEmail(email);
+    const user = await loginService.getUserByEmail(email);
 
     if (!user || password !== user.password) {
         res.status(401).send({
