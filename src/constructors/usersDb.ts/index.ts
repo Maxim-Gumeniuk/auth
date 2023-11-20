@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 export class Db {
     connectionString: string;
-    schema: any;
+    schema: any
     constructor(connectionString: string, schema: any) {
         this.connectionString = connectionString;
         this.schema = schema;

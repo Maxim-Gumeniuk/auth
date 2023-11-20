@@ -4,7 +4,7 @@ import { Roles } from "@/types/roles";
 
 const { MONGOSTRING } = ENVVARIABLES;
 
-export const usersDb = new Db(MONGOSTRING!, {
+const userSchema = {
     email: { 
         type: String, 
         unique: true, 
@@ -24,7 +24,9 @@ export const usersDb = new Db(MONGOSTRING!, {
         enum: Object.values(Roles),
         default: Roles.USER,
     }
-});
+}
+
+export const usersDb = new Db(MONGOSTRING!, userSchema);
 
 export const connectUsersDb = async () => {
     try {

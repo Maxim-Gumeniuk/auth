@@ -2,17 +2,22 @@ import { Request, Response } from "express";
 
 import { userNormalize } from "@/helpers/user/normalize";
 import { jwtService } from "@/services/jwt";
-import { loginService } from "@/services/login";
+import { getUserByEmail } from "@/helpers/user/getUserByEmail";
+import { ApiError } from "@/constructors/error";
 
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    const user = await loginService.getUserByEmail(email);
+    const user = await getUserByEmail(email);
 
     if (!user || password !== user.password) {
-        res.status(401).send({
-            msg: 'not authorized!'
+        const error = ApiError.unathorized({error: 'user doesnt exist or incorect password!'});
+
+        res.status(error.status).send({
+            msg: error.message,
+            errors: error.errors
         })
     }
+
     const normalizeFieldsInUser = userNormalize(user)
     const accesToken = jwtService.generateJwt(user);
 
@@ -22,7 +27,7 @@ const userLogin = async (req: Request, res: Response) => {
     })
 }
 
-export const main = (req: Request, res: Response) => {
+export const main = async (req: Request, res: Response) => {
     res.send({
         msg: 'hello!'
     })

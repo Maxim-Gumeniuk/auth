@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
+import { userModel } from "@/db/users";
 
 import { ENVVARIABLES } from "@/env-variables";
-import { userModel } from "@/db/users";
 
 const { TELEGRAM_BOT_TOKEN } = ENVVARIABLES;
 
