@@ -1,6 +1,7 @@
 import { ENVVARIABLES } from "@/env-variables"
 import { Db } from "@/constructors/usersDb.ts";
 import { Roles } from "@/types/roles";
+import mongoose from "mongoose";
 
 const { MONGOSTRING } = ENVVARIABLES;
 
@@ -23,10 +24,10 @@ const userSchema = {
         type: String,
         enum: Object.values(Roles),
         default: Roles.USER,
-    }
+    },    
 }
 
-export const usersDb = new Db(MONGOSTRING!, userSchema);
+export const usersDb = new Db(MONGOSTRING!);
 
 export const connectUsersDb = async () => {
     try {
@@ -39,6 +40,6 @@ export const connectUsersDb = async () => {
     }
 }
 
-usersDb.createSchema();
+usersDb.createSchema(userSchema);
 
-export const userModel = usersDb.createModel('users');
+export const userModel = usersDb.createModel('users', userSchema);

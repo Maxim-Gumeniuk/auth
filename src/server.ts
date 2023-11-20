@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from 'cookie-parser';
 
 import { ENVVARIABLES } from "@/env-variables";
 import { authRouter } from "./routes/auth/auth-router";
@@ -17,6 +18,7 @@ app.use(cors({
 }))
 
 app.use(express.json());
+app.use(cookieParser())
 app.use(authRouter);
 app.use(mainRouter);
 app.use(errorMiddleware)

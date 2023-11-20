@@ -6,6 +6,27 @@ import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { ApiError } from "@/constructors/error";
 import { bcryptService } from "@/services/bcrypt";
 
+const generateTokens = async (res: Response, user: any) => {
+    const normalizeFieldsInUser = userNormalize(user);
+
+    const accesToken = jwtService.generateJwt(normalizeFieldsInUser);
+
+    const refreshToken = jwtService.generateRefreshJwt(normalizeFieldsInUser);
+    
+    await jwtService.save(normalizeFieldsInUser._id, refreshToken!);
+
+    res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        maxAge: 30 * 24 * 60 * 60 * 1000
+    })
+
+    res.send({
+        user: normalizeFieldsInUser,
+        accesToken
+    })
+
+}
+
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
@@ -21,13 +42,7 @@ const userLogin = async (req: Request, res: Response) => {
         })
     }
 
-    const normalizeFieldsInUser = userNormalize(user)
-    const accesToken = jwtService.generateJwt(user);
-
-    res.send({
-        user: normalizeFieldsInUser,
-        accesToken
-    })
+    await generateTokens(res, user);
 }
 
 export const main = async (req: Request, res: Response) => {
@@ -38,5 +53,6 @@ export const main = async (req: Request, res: Response) => {
 
 export const loginController = {
     userLogin,
-    main
+    main,
+    generateTokens
 }
