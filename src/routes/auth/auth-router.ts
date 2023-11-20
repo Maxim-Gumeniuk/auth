@@ -18,6 +18,6 @@ authRouter.post(
 authRouter.post(
     authLinks.login,
     validateCredentials,
-    authMiddleware,
+    // authMiddleware,
     errorHandler(loginController.userLogin)
 )
