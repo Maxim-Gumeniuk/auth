@@ -1,5 +1,5 @@
 import { IApiError } from "@/types/apiError";
-import { Statuses } from "@/types/statuses";
+import status from 'http-status';
 
 export class ApiError extends Error {
     status: number;
@@ -15,21 +15,23 @@ export class ApiError extends Error {
         return new ApiError({
             message,
             errors,
-            status: Statuses.BAD_REGUET
+            status: status.BAD_REQUEST
         })
     }
+
     static unathorized(errors: Record<string, unknown>) {
         return new ApiError({
-            message: 'unauthorized user',
+            message: status[401],
             errors,
-            status: Statuses.UNATHORIZED
+            status: status.UNAUTHORIZED
         })
     }
+
     static notFound(errors: Record<string, unknown>) {
         return new ApiError({
-            message: 'not found',
+            message: status[404],
             errors,
-            status: Statuses.NOT_FOUND
+            status: status.NOT_FOUND
         })
     }
 }

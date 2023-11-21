@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { jwtService } from "@/services/jwt";
 import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { ApiError } from "@/constructors/error";
+import { isAuth } from "@/helpers/token/isAuth";
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -24,11 +25,13 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
             });
         }
 
-        if (!authorization || !token || !jwtService.verifyToken(token)) {
+        const userIsAuth = isAuth(authorization, token, jwtService.verifyToken(token)!);
+
+        if (!userIsAuth) {
             const error = ApiError.unathorized({
                 error: 'not authorized'
             });
-
+            
             return res.status(error.status).send({
                 message: error.message,
                 error: error.errors

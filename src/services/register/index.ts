@@ -1,11 +1,11 @@
 import { userModel } from "@/db/users";
 import { newBot } from "../telegram";
 import { userNormalize } from "@/helpers/user/normalize";
-import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { bcryptService } from "../bcrypt";
+import { userExist } from "@/helpers/user/exist";
 
 export const register = async (email: string, password: string) => {
-    const existUser = await getUserByEmail(email);
+    const existUser = await userExist(email);
 
     if (existUser) {
         return;
@@ -21,7 +21,12 @@ export const register = async (email: string, password: string) => {
     await Promise.all([ 
         newBot(),  
         newUser.save()
-    ]);
+    ]).then(() => {
+        console.log('all promises returned');
+        
+    }).catch((e) => {
+        console.log(e);
+    });
 
     const user = userNormalize(newUser);
 

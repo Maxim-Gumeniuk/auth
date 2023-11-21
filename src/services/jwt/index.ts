@@ -1,5 +1,7 @@
-import { ENVVARIABLES } from '@/env-variables';
 import jwt from 'jsonwebtoken';
+
+import { RefreshToken } from '@/db/refresh';
+import { ENVVARIABLES } from '@/env-variables';
 
 const generateJwt = (user: any) => {
     try {
@@ -34,9 +36,29 @@ const verifyRefreshToken = (token: string) => {
     }   
 }
 
+const save = async (userId: string, refreshToken: string) => {
+    const token = await RefreshToken.findOne({ userId });
+    
+    if (!token) {
+        await RefreshToken.create({ userId, refreshToken });
+
+        return;
+    }
+
+    token.refreshToken = refreshToken;
+
+    token.save()
+}
+
+const getByToken = (refreshToken: string) => {
+    return RefreshToken.findOne({ refreshToken });
+}
+
 export const jwtService = {
     generateJwt,
     verifyToken,
     generateRefreshJwt,
-    verifyRefreshToken
+    verifyRefreshToken,
+    save,
+    getByToken
 }

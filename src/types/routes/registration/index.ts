@@ -1,4 +1,5 @@
 export const enum authLinks  {
     registration = '/registration',
-    login = '/login'
+    login = '/login',
+    refresh = 'refresh'
 }

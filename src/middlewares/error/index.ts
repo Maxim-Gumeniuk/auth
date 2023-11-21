@@ -1,6 +1,8 @@
-import { ApiError } from "@/constructors/error";
-import { Statuses } from "@/types/statuses";
 import { NextFunction, Request, Response } from "express";
+import status from 'http-status';
+
+import { ApiError } from "@/constructors/error";
+
 
 export const errorMiddleware = (
     error: Error | null = null, 
@@ -9,13 +11,13 @@ export const errorMiddleware = (
     ) => {
 
     if (error instanceof ApiError) {
-        res.status(error.status).send({
+        res.status(+error.status).send({
             message: error.message,
             errors: error.errors
         })
-    }
-    if (error) {
-        res.status(Statuses.SERVER_ERROR).send({
+
+    } else {
+        res.status(status.INTERNAL_SERVER_ERROR).send({
             msg: 'Server error'
         })
     }
