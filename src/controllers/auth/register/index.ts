@@ -1,23 +1,19 @@
 import { NextFunction, Request, Response } from "express";
-
-import { userModel } from "@/db/users";
-import { newBot } from "@/services/telegram";
-import { userNormalize } from "@/helpers/user/normalize";
+import { registerService } from "@/services/register";
+import { ApiError } from "@/constructors/error";
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
-    const newUser = new userModel({
-        email,
-        password,
-    })
+    const user = await registerService.register(email, password);
 
-    await Promise.all([ 
-        newBot(),  
-        newUser.save()
-    ]);
+    if (!user) {
+        const error = ApiError.badRequest('user already exist', {
+            message: 'email already in used'
+        })
 
-    const user = userNormalize(newUser)
+        res.status(error.status).send(error.message)
+    } 
     res.send({
         user,
         message: 'new user was created'
