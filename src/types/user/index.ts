@@ -4,5 +4,5 @@ export interface IUser {
     email: string;
     password: string;
     role: Roles;
-    actavateToken?: string;
+    activateToken?: string;
 }

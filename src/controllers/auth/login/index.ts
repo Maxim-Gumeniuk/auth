@@ -34,9 +34,9 @@ const userLogin = async (req: Request, res: Response) => {
     const comparePass = bcryptService.comparePass(password, user.password);
 
     if (!user || !comparePass) {
-        const error = ApiError.unathorized({error: 'user doesnt exist or incorect password!'});
+        const error = ApiError.unathorized({ error: 'user doesnt exist or incorect password!' });
 
-        res.status(error.status).send({
+        res.status(+error.status).send({
             msg: error.message,
             errors: error.errors
         })

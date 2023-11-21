@@ -12,7 +12,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
             message: 'email already in used'
         })
 
-        res.status(error.status).send(error.message)
+        res.status(+error.status).send(error.message)
     } 
     res.send({
         user,
