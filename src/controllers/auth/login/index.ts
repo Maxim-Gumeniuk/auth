@@ -4,12 +4,15 @@ import { userNormalize } from "@/helpers/user/normalize";
 import { jwtService } from "@/services/jwt";
 import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { ApiError } from "@/constructors/error";
+import { bcryptService } from "@/services/bcrypt";
 
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
 
-    if (!user || password !== user.password) {
+    const comparePass = bcryptService.comparePass(password, user.password);
+
+    if (!user || !comparePass) {
         const error = ApiError.unathorized({error: 'user doesnt exist or incorect password!'});
 
         res.status(error.status).send({
