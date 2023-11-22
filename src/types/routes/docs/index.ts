@@ -1,3 +1,3 @@
-export enum Docs {
+export enum DOCS {
     API_DOCS = '/api-docs'
 }

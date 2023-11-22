@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "swc src -d dist",
+        "build": "swc src -d dist --copy-files",
         "dev": "nodemon --ext ts --exec \"npm run build-dev\"",
         "build-dev": "npm run build && NODE_ENV=development node --inspect dist/server.js",
         "start": "swc src/**/*.ts --out-dir dist && node dist/server.js"
@@ -18,7 +18,7 @@
         "@types/cookie-parser": "^1.4.6",
         "@types/cors": "^2.8.16",
         "@types/jsonwebtoken": "^9.0.5",
-        "@types/swagger-jsdoc": "^6.0.4",
+        
         "@types/swagger-ui-express": "^4.1.6",
         "bcrypt": "^5.1.1",
         "cookie-parser": "^1.4.6",

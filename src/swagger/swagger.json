@@ -1,0 +1,86 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Swagger Petstore - OpenAPI 3.0",
+        "description": "description",
+        "version": "1.0.11",
+        "default": "false"
+    },
+    "tags": [
+        {
+            "name": "auth",
+            "description": "Authentication Endpoints"
+        }
+    ],
+    "paths": {
+        "/registration": {
+            "post": {
+                "tags": ["auth"],
+                "description": "User registration",
+                "requestBody": {
+                    "description": "User information for registration",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "email": "user@example.com",
+                                "password": "securepassword"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "email": "user@example.com",
+                                    "password": "testpassword"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User already exists"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": ["auth"],
+                "description": "User login",
+                "requestBody": {
+                    "description": "User credentials for login",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "email": "user@example.com",
+                                "password": "securepassword",
+                                "activateToken": "activate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 123,
+                                    "email": "user@example.com"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid credentials or account not activated"
+                    }
+                }
+            }
+        }
+    }
+}

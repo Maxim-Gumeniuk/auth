@@ -115,5 +115,9 @@
   "exclude": [
     "node_modules",
     "dist"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/swagger/swagger.json"
   ]
 }
