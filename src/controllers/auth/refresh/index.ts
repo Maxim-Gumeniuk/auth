@@ -1,9 +1,10 @@
 import { ApiError } from "@/constructors/error";
-import { jwtService } from "@/services/jwt";
+
 import { Request, Response } from "express";
 import { loginController } from "../login";
 import { userModel } from "@/db/users";
 import { userNormalize } from "@/helpers/user/normalize";
+import { jwtService } from "@/services/auth/jwt";
 
 const refresh = async (req: Request, res: Response) => {
     const { refreshToken } = req.cookies;

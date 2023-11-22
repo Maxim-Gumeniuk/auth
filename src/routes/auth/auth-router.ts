@@ -7,6 +7,7 @@ import { loginController } from '@/controllers/auth/login';
 import { errorHandler } from '@/helpers/error/errorHandler';
 import { authMiddleware } from '@/middlewares/auth';
 import { refreshController } from '@/controllers/auth/refresh';
+import { logOutController } from '@/controllers/auth/logout';
 
 export const authRouter =  express.Router();
 
@@ -28,4 +29,9 @@ authRouter.post(
     // validateCredentials,
     // authMiddleware,
     errorHandler(refreshController.refresh)
+)
+
+authRouter.get(
+    authLinks.logout,
+    errorHandler(logOutController.logOut)
 )

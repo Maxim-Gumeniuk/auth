@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 
-import { jwtService } from "@/services/jwt";
+
 import { JwtPayload } from "jsonwebtoken";
 import { Roles } from "@/types/roles";
+import { jwtService } from "@/services/auth/jwt";
 
 export const rolesChecker = (roles: Array<string>) => (req: Request, res: Response, next: NextFunction) => {
     const authorization = req.headers['authorization'] || '';

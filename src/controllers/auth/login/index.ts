@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 
 import { userNormalize } from "@/helpers/user/normalize";
-import { jwtService } from "@/services/jwt";
 import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { ApiError } from "@/constructors/error";
-import { bcryptService } from "@/services/bcrypt";
+import { bcryptService } from "@/services/auth/bcrypt";
+import { jwtService } from "@/services/auth/jwt";
 
 const generateTokens = async (res: Response, user: any) => {
     const normalizeFieldsInUser = userNormalize(user);

@@ -1,5 +1,5 @@
 import { userModel } from "@/db/users";
-import { newBot } from "../telegram";
+import { newBot } from "../../telegram";
 import { userNormalize } from "@/helpers/user/normalize";
 import { bcryptService } from "../bcrypt";
 import { userExist } from "@/helpers/user/exist";
