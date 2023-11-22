@@ -1,0 +1,29 @@
+/**
+ * @swagger
+ *  /registration:
+ *    post:
+ *      summary: User Registration
+ *      description: Register a new user by providing email and password.
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                email:
+ *                  type: string
+ *                  format: email
+ *                  description: User's email address.
+ *                password:
+ *                  type: string
+ *                  format: password
+ *                  description: User's password.
+ *      responses:
+ *        200:
+ *          description: Successful response
+ *          content:
+ *            application/json:
+ *              example:
+ *                message: Registration successful. User created.
+ */
