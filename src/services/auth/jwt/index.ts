@@ -5,7 +5,7 @@ import { ENVVARIABLES } from '@/env-variables';
 
 const generateJwt = (user: any) => {
     try {
-        return jwt.sign({ user, role: user.role}, ENVVARIABLES.JWT_SECRET_KEY!, { expiresIn: '1h'});
+        return jwt.sign({ user, role: user.role }, ENVVARIABLES.JWT_SECRET_KEY!, { expiresIn: '1h'});
     } catch(e) {
         console.log(e);
     }

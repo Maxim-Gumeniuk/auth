@@ -6,6 +6,11 @@ import mongoose from "mongoose";
 const { MONGOSTRING } = ENVVARIABLES;
 
 const userSchema = {
+    name: {
+        type: String, 
+        required: true,
+        min: [2, "it should be real name"],
+    },
     email: { 
         type: String, 
         unique: true, 
@@ -24,7 +29,7 @@ const userSchema = {
         type: String,
         enum: Object.values(Roles),
         default: Roles.USER,
-    },    
+    },
 }
 
 export const usersDb = new Db(MONGOSTRING!);

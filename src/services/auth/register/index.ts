@@ -4,7 +4,7 @@ import { userNormalize } from "@/helpers/user/normalize";
 import { bcryptService } from "../bcrypt";
 import { userExist } from "@/helpers/user/exist";
 
-export const register = async (email: string, password: string) => {
+export const register = async (email: string, password: string, name: string) => {
     const existUser = await userExist(email);
 
     if (existUser) {
@@ -16,6 +16,7 @@ export const register = async (email: string, password: string) => {
     const newUser = new userModel({
         email,
         password: hashedPass,
+        name
     })
 
     await Promise.all([ 
