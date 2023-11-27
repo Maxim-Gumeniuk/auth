@@ -5,10 +5,10 @@ import { authLinks } from '@/types/routes/registration/index';
 import { validateCredentials } from '@/middlewares/validate/auth';
 import { loginController } from '@/controllers/auth/login';
 import { errorHandler } from '@/helpers/error/errorHandler';
-import { authMiddleware } from '@/middlewares/auth';
 import { refreshController } from '@/controllers/auth/refresh';
+import { logOutController } from '@/controllers/auth/logout';
 
-export const authRouter =  express.Router();
+export const authRouter = express.Router();
 
 authRouter.post(
     authLinks.registration,
@@ -28,4 +28,9 @@ authRouter.post(
     // validateCredentials,
     // authMiddleware,
     errorHandler(refreshController.refresh)
+)
+
+authRouter.get(
+    authLinks.logout,
+    errorHandler(logOutController.logOut)
 )

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 
-import { jwtService } from "@/services/jwt";
 import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { ApiError } from "@/constructors/error";
 import { isAuth } from "@/helpers/token/isAuth";
+import { jwtService } from "@/services/auth/jwt";
 
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     try {

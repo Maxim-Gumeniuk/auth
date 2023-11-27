@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 
 import { userNormalize } from "@/helpers/user/normalize";
-import { jwtService } from "@/services/jwt";
 import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { ApiError } from "@/constructors/error";
-import { bcryptService } from "@/services/bcrypt";
+import { bcryptService } from "@/services/auth/bcrypt";
+import { jwtService } from "@/services/auth/jwt";
+import { userModel } from "@/db/users";
 
 const generateTokens = async (res: Response, user: any) => {
     const normalizeFieldsInUser = userNormalize(user);
@@ -13,7 +14,7 @@ const generateTokens = async (res: Response, user: any) => {
 
     const refreshToken = jwtService.generateRefreshJwt(normalizeFieldsInUser);
     
-    await jwtService.save(normalizeFieldsInUser._id, refreshToken!);
+    await jwtService.save(normalizeFieldsInUser._id, refreshToken!);    
 
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
