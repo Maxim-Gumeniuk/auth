@@ -7,6 +7,7 @@ import { loginController } from '@/controllers/auth/login';
 import { errorHandler } from '@/helpers/error/errorHandler';
 import { refreshController } from '@/controllers/auth/refresh';
 import { logOutController } from '@/controllers/auth/logout';
+import { activateMiddleware, authMiddleware } from '@/middlewares/auth';
 
 export const authRouter = express.Router();
 
@@ -19,7 +20,7 @@ authRouter.post(
 authRouter.post(
     authLinks.login,
     validateCredentials,
-    // authMiddleware,
+    activateMiddleware,
     errorHandler(loginController.userLogin)
 )
 

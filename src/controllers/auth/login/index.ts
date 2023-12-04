@@ -25,19 +25,27 @@ const generateTokens = async (res: Response, user: any) => {
         user: normalizeFieldsInUser,
         accesToken
     })
-
 }
 
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
 
-    const comparePass = bcryptService.comparePass(password, user.password);
-
-    if (!user || !comparePass) {
-        const error = ApiError.unathorized({ error: 'user doesnt exist or incorect password!' });
+    if (!user) {
+        const error = ApiError.unathorized({ error: 'user doesnt exist' });
 
         res.status(+error.status).send({
+            msg: error.message,
+            errors: error.errors
+        })
+    }
+
+    const comparePass = await bcryptService.comparePass(user.password, password);
+
+    if (!comparePass) {
+        const error = ApiError.unathorized({ error: 'incorect password!' });
+
+        res.status(error.status).send({
             msg: error.message,
             errors: error.errors
         })
