@@ -5,10 +5,16 @@ import { loginController } from "../login";
 import { userModel } from "@/db/users";
 import { userNormalize } from "@/helpers/user/normalize";
 import { jwtService } from "@/services/auth/jwt";
+import { RefreshToken } from "@/db/refresh";
 
 const refresh = async (req: Request, res: Response) => {
     const { refreshToken } = req.cookies;
-    const { email } = req.body;
+
+    const foundUser: any = await RefreshToken.findOne({
+        refreshToken
+    }).populate('userId').exec()
+    
+    const { email } = foundUser.userId;
 
     const userRefreshToken = jwtService.verifyRefreshToken(refreshToken);
 

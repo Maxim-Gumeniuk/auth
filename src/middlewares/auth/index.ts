@@ -10,21 +10,6 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
         const authorization = req.headers['authorization'] || '';
         const [, token] = authorization.split(' ');
 
-        const { email } = req.body;
-
-        const user: any = await getUserByEmail(email);
-
-        if (!user.activateToken) {
-            const error = ApiError.badRequest('you should activate your account', {
-                error: 'account not active',
-            });
-
-            return res.status(error.status).send({
-                message: error.message,
-                error: error.errors
-            });
-        }
-
         const userIsAuth = isAuth(authorization, token, jwtService.verifyToken(token)!);
 
         if (!userIsAuth) {
@@ -43,3 +28,28 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
         next(error);
     }
 };
+
+
+export const activateMiddleware = async (req: Request, res: Response, next: NextFunction) =>  {
+    try {
+        const { email } = req.body;
+
+        const user: any = await getUserByEmail(email);
+    
+        if (!user.activateToken) {
+            const error = ApiError.badRequest('you should activate your account', {
+                error: 'account not active',
+            });
+    
+            return res.status(error.status).send({
+                message: error.message,
+                error: error.errors
+            });
+        }
+
+        next()
+    } catch(e) {
+        next(e)
+    }
+
+}
