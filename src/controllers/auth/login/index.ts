@@ -30,8 +30,12 @@ const generateTokens = async (res: Response, user: any) => {
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
+    console.log('user');
+    
 
     if (!user) {
+      
+        
         const error = ApiError.unathorized({ error: 'user doesnt exist' });
 
         res.status(+error.status).send({
@@ -44,7 +48,7 @@ const userLogin = async (req: Request, res: Response) => {
 
     if (!comparePass) {
         const error = ApiError.unathorized({ error: 'incorect password!' });
-
+        
         res.status(error.status).send({
             msg: error.message,
             errors: error.errors
