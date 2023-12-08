@@ -36,15 +36,13 @@ export const activateMiddleware = async (req: Request, res: Response, next: Next
 
         const user: any = await getUserByEmail(email);
     
-        if (!user.activateToken) {
-            const error = ApiError.badRequest('you should activate your account', {
-                error: 'account not active',
-            });
-    
-            return res.status(error.status).send({
-                message: error.message,
-                error: error.errors
-            });
+        if (user && !user.activateToken) {
+            const error = ApiError.unathorized({ error: 'you should activate your account!' });
+        
+            res.status(error.status).send({
+                msg: error.message,
+                errors: error.errors
+            })
         }
 
         next()
