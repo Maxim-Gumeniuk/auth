@@ -5,7 +5,6 @@ import { getUserByEmail } from "@/helpers/user/getUserByEmail";
 import { ApiError } from "@/constructors/error";
 import { bcryptService } from "@/services/auth/bcrypt";
 import { jwtService } from "@/services/auth/jwt";
-import { userModel } from "@/db/users";
 
 const generateTokens = async (res: Response, user: any) => {
     const normalizeFieldsInUser = userNormalize(user);
@@ -30,12 +29,8 @@ const generateTokens = async (res: Response, user: any) => {
 const userLogin = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = await getUserByEmail(email);
-    console.log('user');
-    
 
     if (!user) {
-      
-        
         const error = ApiError.unathorized({ error: 'user doesnt exist' });
 
         res.status(+error.status).send({
