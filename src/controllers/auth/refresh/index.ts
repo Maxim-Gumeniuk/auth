@@ -35,9 +35,7 @@ const refresh = async (req: Request, res: Response) => {
     const normalizeUserFields = userNormalize(user);
 
     await loginController.generateTokens(res, normalizeUserFields) 
-    // should change logic
 }
-
 
 export const refreshController = {
     refresh

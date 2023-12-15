@@ -34,4 +34,12 @@ export class ApiError extends Error {
             status: status.NOT_FOUND
         })
     }
+
+    static unProcessableEntity(errors: Record<string, unknown>) {
+        return new ApiError({
+            message: status[403],
+            errors,
+            status: status.UNPROCESSABLE_ENTITY
+        })
+    }
 }

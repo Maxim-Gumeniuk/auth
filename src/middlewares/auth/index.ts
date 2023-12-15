@@ -49,5 +49,4 @@ export const activateMiddleware = async (req: Request, res: Response, next: Next
     } catch(e) {
         next(e)
     }
-
 }

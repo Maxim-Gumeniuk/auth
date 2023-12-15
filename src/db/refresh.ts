@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { usersDb } from "./users";
+import { usersDb } from "./connection";
 
 const refreshTokenSchema = usersDb.createSchema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },

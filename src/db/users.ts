@@ -1,9 +1,6 @@
-import { ENVVARIABLES } from "@/env-variables"
-import { Db } from "@/constructors/usersDb.ts";
 import { Roles } from "@/types/roles";
-import mongoose from "mongoose";
+import { usersDb } from "./connection";
 
-const { MONGOSTRING } = ENVVARIABLES;
 
 const userSchema = {
     name: {
@@ -30,19 +27,6 @@ const userSchema = {
         enum: Object.values(Roles),
         default: Roles.USER,
     },
-}
-
-export const usersDb = new Db(MONGOSTRING!);
-
-export const connectUsersDb = async () => {
-    try {
-        await usersDb.connect();
-
-        console.log("Connected to the database");
-
-    } catch (e) {
-        console.log(e);
-    }
 }
 
 usersDb.createSchema(userSchema);

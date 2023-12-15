@@ -1,5 +1,4 @@
 import { RefreshToken } from "@/db/refresh"
-import { jwtService } from "../jwt";
 
 const removeToken = async (userId: string) => {
     const refreshToken = await RefreshToken.findOne({ userId });

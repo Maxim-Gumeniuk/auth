@@ -5,11 +5,12 @@ import cookieParser from 'cookie-parser';
 import swaggerJson from '@/swagger/swagger.json';
 
 import { authRouter } from "./routes/auth/auth-router";
-import { connectUsersDb } from "./db/users";
 import { mainRouter } from "./routes/main";
 import { errorMiddleware } from "./middlewares/error";
 import { ENVVARIABLES } from "./env-variables";
 import { DOCS } from "./types/routes/docs";
+import { productRouter } from "./routes/product";
+import { connectUsersDb } from "./db/connection";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 app.use(authRouter);
 app.use(mainRouter);
+app.use(productRouter);
 
 app.use(DOCS.API_DOCS, 
     swaggerUi.serve, 

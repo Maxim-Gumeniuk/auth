@@ -23,7 +23,6 @@ const logOut = async (req: Request, res: Response) => {
     })
 }
 
-
 export const logOutController = {
     logOut,
 }
