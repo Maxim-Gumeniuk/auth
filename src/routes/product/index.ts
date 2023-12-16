@@ -8,4 +8,5 @@ import { productLinks } from "@/types/routes/product";
 export const productRouter = express.Router()
 
 /// authMiddleware
+productRouter.get(productLinks.allProducts, errorHandler(productController.getAllProducts));
 productRouter.post(productLinks.addProduct, errorHandler(productController.addNewProduct));

@@ -1,3 +1,4 @@
 export enum productLinks  {
-    addProduct = '/add-product'
+    addProduct = '/add-product',
+    allProducts = '/products'
 }

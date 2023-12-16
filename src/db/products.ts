@@ -27,4 +27,4 @@ const productSchema = usersDb.createSchema(
     }
 )
 
-export const product = usersDb.createModel('product', productSchema);
+export const Product = usersDb.createModel('product', productSchema);
