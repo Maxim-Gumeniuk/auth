@@ -10,7 +10,7 @@ const productSchema = usersDb.createSchema(
         },
         purchasePrice: {
             type: Number,
-            required: true,
+            required: true
         },
         priceOfTransportation: {
             type: Number,

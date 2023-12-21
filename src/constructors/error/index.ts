@@ -19,6 +19,14 @@ export class ApiError extends Error {
         })
     }
 
+    static notModified(errors: Record<string, unknown>) {
+        return new ApiError({
+            message: status[304],
+            errors,
+            status: status.BAD_REQUEST
+        })
+    }
+
     static unathorized(errors: Record<string, unknown>) {
         return new ApiError({
             message: status[401],

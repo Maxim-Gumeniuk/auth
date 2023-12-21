@@ -4,10 +4,13 @@ import { productController } from "@/controllers/product";
 import { errorHandler } from "@/helpers/error/errorHandler";
 import { authMiddleware } from "@/middlewares/auth";
 import { productLinks } from "@/types/routes/product";
+import { fieldChecker } from "@/middlewares/field-checker";
 
 export const productRouter = express.Router()
 
 /// authMiddleware
 productRouter.get(productLinks.allProducts, errorHandler(productController.getAllProducts));
-productRouter.post(productLinks.addProduct, errorHandler(productController.addNewProduct));
-
+productRouter.post(productLinks.addProduct,fieldChecker(['title', 'purchasePrice']), errorHandler(productController.addNewProduct));
+productRouter.delete(`${productLinks.product}/:id`, productController.deleteProduct);
+productRouter.delete(`${productLinks.allProducts}/:ids`, productController.deleteManyProducts);
+productRouter.put(`${productLinks.product}/:id`, productController.updateProduct)
