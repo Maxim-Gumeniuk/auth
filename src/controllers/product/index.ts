@@ -50,7 +50,7 @@ const addNewProduct = async (req: Request, res: Response) => {
         repairPreis = 0,
         salePrice = 0, 
         income = 0
-    } = req.body || {};
+    } = req.body;
 
     const newProduct = await Product.create({
         title,

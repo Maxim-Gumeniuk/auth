@@ -21,7 +21,7 @@ const deleteProducts = async (ids: string[]) => {
 
 
 const updateOneProduct = async (id: string, update: Record<string, unknown>) => {
-    const updatedProduct = await Product.updateOne({ '_id': id }, { "$set": update });
+    const updatedProduct = await Product.updateOne({ '_id': id },  update );
 
     return updatedProduct;
 }
