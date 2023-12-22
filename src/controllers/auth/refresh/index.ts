@@ -1,5 +1,4 @@
 import { ApiError } from "@/constructors/error";
-import jwt from 'jsonwebtoken';
 
 import { Request, Response } from "express";
 import { loginController } from "../login";

@@ -17,7 +17,7 @@ const generateTokens = async (res: Response, user: any) => {
     
     res.cookie('accesToken', accesToken, {
         httpOnly: true,
-        maxAge: 80 * 60  * 60 * 60 * 1000
+        maxAge: 80 * 60 * 60 * 1000
     })
 
     res.cookie('refreshToken', refreshToken, {
