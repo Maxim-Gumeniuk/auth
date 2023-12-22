@@ -9,7 +9,7 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
     try {
         const authorization = req.headers['authorization'] || '';
         const [, token] = authorization.split(' ');
-
+    
         const userIsAuth = isAuth(authorization, token, jwtService.verifyToken(token)!);
 
         if (!userIsAuth) {

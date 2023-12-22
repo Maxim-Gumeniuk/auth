@@ -1,12 +1,21 @@
 import mongoose from "mongoose";
 export class Db {
-    connectionString: string;
+    private _connectionString: string;
+    private static instance: Db;
+
     constructor(connectionString: string) {
-        this.connectionString = connectionString;
+        this._connectionString = connectionString;
+
+        if (Db.instance) {
+            return Db.instance;
+        }
+
+        Db.instance = this;
     }
+
     async connect() {
-        const { connectionString } = this;
-        await mongoose.connect(connectionString);
+        const { _connectionString } = this;
+        await mongoose.connect(_connectionString);
     }
 
     createSchema(schema: any) {

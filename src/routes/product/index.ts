@@ -9,7 +9,7 @@ import { fieldChecker } from "@/middlewares/field-checker";
 export const productRouter = express.Router()
 
 /// authMiddleware
-productRouter.get(productLinks.allProducts, errorHandler(productController.getAllProducts));
+productRouter.post(productLinks.allProducts, authMiddleware, errorHandler(productController.getAllProducts));
 productRouter.post(productLinks.addProduct,fieldChecker(['title', 'purchasePrice']), errorHandler(productController.addNewProduct));
 productRouter.delete(`${productLinks.product}/:id`, productController.deleteProduct);
 productRouter.delete(`${productLinks.allProducts}/:ids`, productController.deleteManyProducts);
