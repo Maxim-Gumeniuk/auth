@@ -14,6 +14,11 @@ const generateTokens = async (res: Response, user: any) => {
     const refreshToken = jwtService.generateRefreshJwt(normalizeFieldsInUser);
     
     await jwtService.save(normalizeFieldsInUser._id, refreshToken!);    
+    
+    res.cookie('accesToken', accesToken, {
+        httpOnly: true,
+        maxAge: 80 * 60 * 60 * 1000
+    })
 
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
